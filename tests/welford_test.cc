@@ -40,8 +40,8 @@ TEST(Welford, TenSample) {
     welford.Accum(i);
   }
   EXPECT_FLOAT_EQ(4.5, welford.GetMean());
-  EXPECT_NEAR(9.1667, welford.GetVar(), 0.0001);
-  EXPECT_NEAR(3.0277, welford.GetStd(), 0.0001);
+  EXPECT_FLOAT_EQ(9.166666666666666, welford.GetVar());
+  EXPECT_FLOAT_EQ(3.027650354097492, welford.GetStd());
 }
 /* Test the clear method */
 TEST(Welford, Clear) {
