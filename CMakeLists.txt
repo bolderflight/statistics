@@ -15,8 +15,20 @@ target_include_directories(welford PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
  	$<INSTALL_INTERFACE:include>
 )
-# Unit testing if this project is built separately
+# Example and unit testing if this project is built separately
 if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
+	# Add the example target
+	add_executable(welford_example examples/welford_example.cc)
+	# Add the includes
+	target_include_directories(welford_example PUBLIC 
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:include>
+	)
+	# Link libraries to the test target
+	target_link_libraries(welford_example
+		PRIVATE 
+			welford
+	)
 	# Fetch google test
 	include(FetchContent)
 	FetchContent_Declare(
