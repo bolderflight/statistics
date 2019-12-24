@@ -25,7 +25,7 @@ This will build the library, an example executable called *welford_example*, and
 Welford w;
 ```
 
-**Accum(float x)** Accumulates data into the estimator.
+**void Accum(float x)** Accumulates data into the estimator.
 
 ```C++
 for (unsigned int i = 0; i < 10; i++) {
