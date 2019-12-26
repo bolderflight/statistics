@@ -5,19 +5,19 @@
 * Copyright (c) 2019 Bolder Flight Systems
 */
 
-#include "welford/welford.h"
+#include "statistics/statistics.h"
 #include "gtest/gtest.h"
 
 /* Test the default constructor */
 TEST(Welford, DefaultConstructor) {
-  Welford welford;
+  statistics::Welford welford;
   EXPECT_EQ(0, welford.GetMean());
   EXPECT_EQ(0, welford.GetVar());
   EXPECT_EQ(0, welford.GetStd());
 }
 /* Accumlate 1 sample and test */
 TEST(Welford, OneSample) {
-  Welford welford;
+  statistics::Welford welford;
   welford.Accum(1.0f);
   EXPECT_EQ(1, welford.GetMean());
   EXPECT_EQ(0, welford.GetVar());
@@ -25,7 +25,7 @@ TEST(Welford, OneSample) {
 }
 /* Accumlate a few samples and test */
 TEST(Welford, ThreeSample) {
-  Welford welford;
+  statistics::Welford welford;
   welford.Accum(1);
   welford.Accum(2);
   welford.Accum(3);
@@ -35,7 +35,7 @@ TEST(Welford, ThreeSample) {
 }
 /* Accumlate ten samples and test */
 TEST(Welford, TenSample) {
-  Welford welford;
+  statistics::Welford welford;
   for (unsigned int i = 0; i < 10; i++) {
     welford.Accum(i);
   }
@@ -45,7 +45,7 @@ TEST(Welford, TenSample) {
 }
 /* Test the clear method */
 TEST(Welford, Clear) {
-  Welford welford;
+  statistics::Welford welford;
   for (unsigned int i = 0; i < 10; i++) {
     welford.Accum(i);
   }

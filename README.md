@@ -1,11 +1,11 @@
-# Welford
-This class implements Welford's method for streaming estimation of mean, variance, and standard deviation. 
+# Statistics
+This library contains statistics functions and classes.
 
 ## Installation
-CMake is used to build this library, which is exported as a library target called *welford*. The header is added as:
+CMake is used to build this library, which is exported as a library target called *statistics*. The header is added as:
 
 ```
-#include "welford/welford.h"
+#include "statistics/statistics.h"
 ```
 
 The library can be also be compiled stand-alone using the CMake idiom of creating a *build* directory and then, from within that directory issuing:
@@ -17,12 +17,18 @@ make
 
 This will build the library, an example executable called *welford_example*, and an executable for testing using the Google Test framework, called *welford_test*. The example executable source file is located at *examples/welford_example.cc*.
 
+## Namespace
+This library is within the namespace *statistics*.
+
+# Welford
+This class implements Welford's method for streaming estimation of mean, variance, and standard deviation. 
+
 ## Methods
 
 **Welford()** Creates a Welford object and initializes the estimator states.
 
 ```C++
-Welford w;
+statistics::Welford w;
 ```
 
 **void Accum(float x)** Accumulates data into the estimator.

@@ -5,12 +5,12 @@
 * Copyright (c) 2019 Bolder Flight Systems
 */
 
-#include "welford/welford.h"
+#include "statistics/statistics.h"
 #include <iostream>
 
 int main()
 {
-  Welford w;
+  statistics::Welford w;
   for (unsigned int i = 0; i < 10; i++) {
     w.Accum((float) i);
   }

@@ -5,8 +5,10 @@
 * Copyright (c) 2019 Bolder Flight Systems
 */
 
-#include "welford/welford.h"
+#include "statistics/statistics.h"
 #include <math.h>
+
+namespace statistics {
 
 Welford::Welford()
 {
@@ -46,3 +48,5 @@ void Welford::Clear()
 {
   n_ = 0;
 }
+
+} // statistics

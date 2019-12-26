@@ -1,17 +1,17 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
-project(Welford
+project(Statistics
   VERSION 1.0
-  DESCRIPTION "Welford's method for streaming mean, variance, and standard deviation."
+  DESCRIPTION "Statistics algorithms and classes."
   LANGUAGES C CXX
 )
 # Add the library target
-add_library(welford
-	include/welford/welford.h
- 	src/welford/welford.cc
+add_library(statistics
+	include/statistics/statistics.h
+ 	src/statistics/statistics.cc
  )
 # Setup include directories 
-target_include_directories(welford PUBLIC 
+target_include_directories(statistics PUBLIC 
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
  	$<INSTALL_INTERFACE:include>
 )
@@ -27,7 +27,7 @@ if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	# Link libraries to the test target
 	target_link_libraries(welford_example
 		PRIVATE 
-			welford
+			statistics
 	)
 	# Fetch google test
 	include(FetchContent)
@@ -48,7 +48,7 @@ if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	# Link libraries to the test target
 	target_link_libraries(welford_test
 		PRIVATE 
-			welford
+			statistics
 			gtest_main 
 			gtest
 			gmock
