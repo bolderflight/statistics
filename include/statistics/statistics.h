@@ -5,8 +5,8 @@
 * Copyright (c) 2019 Bolder Flight Systems
 */
 
-#ifndef STATISTICS_H
-#define STATISTICS_H
+#ifndef INCLUDE_STATISTICS_STATISTICS_H_
+#define INCLUDE_STATISTICS_STATISTICS_H_
 
 #include <stdlib.h>
 
@@ -25,18 +25,18 @@ namespace statistics {
 * class states.
 */
 class Welford {
-  public:
-    Welford();
-    void Accum(float x);
-    float GetMean();
-    float GetVar();
-    float GetStd();
-    void Clear();
-  private:
-    unsigned int n_;
-    float m_old_, m_new_, s_old_, s_new_;
+ public:
+  Welford();
+  void Accum(float x);
+  float GetMean();
+  float GetVar();
+  float GetStd();
+  void Clear();
+ private:
+  unsigned int n_;
+  float m_old_, m_new_, s_old_, s_new_;
 };
 
-} // statistics
+}  // namespace statistics
 
-#endif
+#endif  // INCLUDE_STATISTICS_STATISTICS_H_
