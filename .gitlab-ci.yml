@@ -3,8 +3,7 @@ stages:
   - test
 
 Compile:
-  stage: 
-    - build
+  stage: build
   tags:
     - bfs
   script:
@@ -17,8 +16,7 @@ Compile:
       - build/welford_test
 
 Test Welford:
-  stage: 
-    - test
+  stage: test
   tags:
     - bfs
   script:
