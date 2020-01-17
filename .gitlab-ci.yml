@@ -8,8 +8,8 @@ Lint:
   tags:
     - bfs
   script: 
-    - python cpplint.py --verbose=5 src/statistics.cc
-    - python cpplint.py --verbose=5 include/statistics.h
+    - cpplint.py --verbose=5 src/statistics.cc
+    - cpplint.py --verbose=5 include/statistics.h
 
 Compile:
   stage: build
