@@ -13,9 +13,9 @@ Build code:
     - make
   artifacts:
     paths:
-      - welford_test
+      - build/welford_test
 
-Test code:
+Test Welford:
   stage: test
   script:
-    - ./welford_test
+    - ./build/welford_test
