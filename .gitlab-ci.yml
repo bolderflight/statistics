@@ -1,0 +1,11 @@
+stages:
+  - Build
+  - Run
+
+Build code:
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
