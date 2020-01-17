@@ -1,11 +1,6 @@
 image: flybrianfly/gcc-cmake
 
-stages:
-  - build
-  - test
-
 Build code:
-  stage: build
   script:
     - mkdir build
     - cd build
@@ -16,6 +11,5 @@ Build code:
       - build/welford_test
 
 Test Welford:
-  stage: test
   script:
     - ./build/welford_test
