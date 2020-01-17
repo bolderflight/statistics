@@ -1,0 +1,21 @@
+image: flybrianfly/gcc-cmake
+
+stages:
+  - build
+  - test
+
+Compile:
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+  artifacts:
+    paths:
+      - build/welford_test
+
+Test Welford:
+  stage: test
+  script:
+    - ./build/welford_test
