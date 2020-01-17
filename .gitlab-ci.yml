@@ -11,8 +11,11 @@ Build code:
     - cd build
     - cmake ..
     - make
+  artifacts:
+    paths:
+      - welford_test
 
 Test code:
   stage: test
   script:
-    - make test
+    - ./welford_test
