@@ -2,6 +2,7 @@ image: flybrianfly/gcc-cmake
 
 stages:
   - build
+  - test
 
 Build code:
   stage: build
@@ -10,3 +11,8 @@ Build code:
     - cd build
     - cmake ..
     - make
+
+Test code:
+  stage: test
+  script:
+    - make test
