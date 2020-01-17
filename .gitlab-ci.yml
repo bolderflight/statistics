@@ -1,3 +1,5 @@
+image: flybrianfly/gcc-cmake
+
 stages:
   - build
 
