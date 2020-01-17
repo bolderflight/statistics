@@ -8,7 +8,6 @@ Lint:
   tags:
     - bfs
   script: 
-    - echo "$(pwd)"
     - cpplint.py --verbose=0 src/statistics/statistics.cc
     - cpplint.py --verbose=0 include/statistics/statistics.h
 
