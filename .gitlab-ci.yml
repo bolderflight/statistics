@@ -1,6 +1,5 @@
 stages:
   - Build
-  - Run
 
 Build code:
   stage: build
