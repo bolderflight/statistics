@@ -1,14 +1,8 @@
 # Statistics
 This library contains statistics functions and classes.
-
-## License
-[Library license](LICENSE.md).
-
-## Changelog
-[Library changelog](CHANGELOG.md).
-
-## Contributing
-[Bolder Flight Systems contributing guide](CONTRIBUTING.md).
+   * [License](LICENSE.md).
+   * [Changelog](CHANGELOG.md).
+   * [Contributing guide](CONTRIBUTING.md).
 
 ## Installation
 CMake is used to build this library, which is exported as a library target called *statistics*. The header is added as:
