@@ -8,6 +8,7 @@ Software development and contribution should follow these steps:
    * Document 
    * Merge
    * Tag
+
 Further detail is provided below for each step.
 
 ### Develop
@@ -26,6 +27,7 @@ Follow the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide
    * _ms: meters/second
    * _rads: radians/s
    * _mss: meters/second/second
+
 Prefer to use _float_ instead of _double_ unless there is a specific need for improved accuracy. Specify integer size in all cases where a certain number of bytes are expected (i.e. uint16_t where 2 bytes is assumed); otherwise use unsigned or signed int. Typically, we are not concerned with program size and unsigned or signed int work well for integers and index values. If a certain number of bytes are needed they need to be called out directly since different compilers and platforms can change the number of bytes stored in a short, for instance.
 
 #### External sources licensing
@@ -43,6 +45,7 @@ All tests should pass before a pull request is issued. At a minimum, the followi
    * Test
       * Inputs
       * Expected values
+
 Tests are run using the [Google Test framework](https://github.com/google/googletest).
 #### Linting
 Linting tests check for conformance to the style guide - analyzing the code for potential errors and leading to better readibility. [cpplint](https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py) should be used to conduct linting tests with verbosity level 0.
