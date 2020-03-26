@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.7
+
+- Updated to pull a specific version (1.10) of the Google Test suite
+
 ## v1.0.6
 
 - Updated documentation to include license file, changelog, and contribution guide
