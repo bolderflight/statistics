@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Statistics
-  VERSION 1.0
+  VERSION 2.0
   DESCRIPTION "Statistics algorithms and classes."
   LANGUAGES C CXX
 )
@@ -24,7 +24,7 @@ if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 		$<INSTALL_INTERFACE:include>
 	)
-	# Link libraries to the test target
+	# Link libraries to the example target
 	target_link_libraries(welford_example
 		PRIVATE 
 			statistics

@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.0
+
+- Updated API to use mean(), std(), and var() for mean, standard deviation, and variance. This treats the "Get" accessors more like data members.
+
 ## v1.0.7
 
 - Updated to pull a specific version (1.10) of the Google Test suite
