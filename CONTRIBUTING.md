@@ -47,6 +47,7 @@ All tests should pass before a pull request is issued. At a minimum, the followi
       * Expected values
 
 Tests are run using the [Google Test framework](https://github.com/google/googletest).
+
 #### Linting
 Linting tests check for conformance to the style guide - analyzing the code for potential errors and leading to better readibility. [cpplint](https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py) should be used to conduct linting tests with verbosity level 0.
 

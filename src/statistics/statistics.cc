@@ -27,16 +27,16 @@ void Welford::Accum(float x)  {
   }
 }
 
-float Welford::GetMean() {
+float Welford::mean() {
   return (n_ > 0) ? m_new_ : 0.0f;
 }
 
-float Welford::GetVar() {
+float Welford::var() {
   return (n_ > 1) ? s_new_ / static_cast<float>((n_ - 1)) : 0.0f;
 }
 
-float Welford::GetStd() {
-  return sqrtf(GetVar());
+float Welford::std() {
+  return sqrtf(var());
 }
 
 void Welford::Clear() {

@@ -44,22 +44,22 @@ for (unsigned int i = 0; i < 10; i++) {
 }
 ```
 
-**float Welford::GetMean()** Returns the current estimate of the mean of the accumulated data.
+**float Welford::mean()** Returns the current estimate of the mean of the accumulated data.
 
 ```C++
-std::cout << w.GetMean() << std::endl; // 4.5
+std::cout << w.mean() << std::endl; // 4.5
 ```
 
-**float Welford::GetVar()** Returns the current estimate of the variance of the accumulated data.
+**float Welford::var()** Returns the current estimate of the variance of the accumulated data.
 
 ```C++
-std::cout << w.GetVar() << std::endl; // 9.1667
+std::cout << w.var() << std::endl; // 9.1667
 ```
 
-**float Welford::GetStd()** Returns the current estimate of the standard deviation of the accumulated data.
+**float Welford::std()** Returns the current estimate of the standard deviation of the accumulated data.
 
 ```C++
-std::cout << w.GetStd() << std::endl; // 3.0277
+std::cout << w.std() << std::endl; // 3.0277
 ```
 
 **void Welford::Clear()** Resets the estimator states.
