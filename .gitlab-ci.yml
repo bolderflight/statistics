@@ -8,8 +8,7 @@ Lint:
   tags:
     - bfs
   script: 
-    - cpplint.py --verbose=0 src/statistics/statistics.cc
-    - cpplint.py --verbose=0 include/statistics/statistics.h
+    - cpplint.py --verbose=0 --filter=-whitespace,-line_length include/statistics/welford.h
 
 Compile:
   stage: build

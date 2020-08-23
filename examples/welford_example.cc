@@ -10,7 +10,7 @@
 
 int main()
 {
-  statistics::Welford w;
+  statistics::Welford<float> w;
   for (unsigned int i = 0; i < 10; i++) {
     w.Accum((float) i);
   }

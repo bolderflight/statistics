@@ -1,20 +1,15 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Statistics
-  VERSION 2.0
+  VERSION 1.0.0
   DESCRIPTION "Statistics algorithms and classes."
   LANGUAGES C CXX
 )
 # Add the library target
-add_library(statistics
-	include/statistics/statistics.h
- 	src/statistics/statistics.cc
- )
+add_library(statistics INTERFACE)
 # Setup include directories 
-target_include_directories(statistics PUBLIC 
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
- 	$<INSTALL_INTERFACE:include>
-)
+target_include_directories(statistics INTERFACE include/)
+
 # Example and unit testing if this project is built separately
 if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	# Add the example target

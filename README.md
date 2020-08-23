@@ -26,17 +26,17 @@ This will build the library, an example executable called *welford_example*, and
 This library is within the namespace *statistics*.
 
 # Welford
-This class implements Welford's method for streaming estimation of mean, variance, and standard deviation. 
+This class implements Welford's method for streaming estimation of mean, variance, and standard deviation. The class is templated to support floating point types.
 
 ## Methods
 
 **Welford()** Creates a Welford object and initializes the estimator states.
 
 ```C++
-statistics::Welford w;
+statistics::Welford<float> w;
 ```
 
-**void Welford::Accum(float x)** Accumulates data into the estimator.
+**void Welford::Accum(T x)** Accumulates data into the estimator.
 
 ```C++
 for (unsigned int i = 0; i < 10; i++) {
@@ -44,19 +44,19 @@ for (unsigned int i = 0; i < 10; i++) {
 }
 ```
 
-**float Welford::mean()** Returns the current estimate of the mean of the accumulated data.
+**T Welford::mean()** Returns the current estimate of the mean of the accumulated data.
 
 ```C++
 std::cout << w.mean() << std::endl; // 4.5
 ```
 
-**float Welford::var()** Returns the current estimate of the variance of the accumulated data.
+**T Welford::var()** Returns the current estimate of the variance of the accumulated data.
 
 ```C++
 std::cout << w.var() << std::endl; // 9.1667
 ```
 
-**float Welford::std()** Returns the current estimate of the standard deviation of the accumulated data.
+**T Welford::std()** Returns the current estimate of the standard deviation of the accumulated data.
 
 ```C++
 std::cout << w.std() << std::endl; // 3.0277
