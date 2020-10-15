@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Statistics
-  VERSION 1.0.0
+  VERSION 1.0.1
   DESCRIPTION "Statistics algorithms and classes."
   LANGUAGES C CXX
 )
