@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Statistics
-  VERSION 1.0.1
+  VERSION 1.0.2
   DESCRIPTION "Statistics algorithms and classes."
-  LANGUAGES C CXX
+  LANGUAGES CXX
 )
 # Add the library target
 add_library(statistics INTERFACE)
