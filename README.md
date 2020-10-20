@@ -20,50 +20,92 @@ cmake ..
 make
 ```
 
-This will build the library, an example executable called *welford_example*, and an executable for testing using the Google Test framework, called *welford_test*. The example executable source file is located at *examples/welford_example.cc*. This code is built and tested on AARCH64 and AMD64 systems running Linux and AMD64 systems running the Windows Subsystem for Linux (WSL).
+This will build the library, an example executable called *stats_example*, and an executable for testing using the Google Test framework, called *stats_test*. The example executable source file is located at *examples/stats_example.cc*. This code is built and tested on AARCH64 and AMD64 systems running Linux and AMD64 systems running the Windows Subsystem for Linux (WSL).
 
 ## Namespace
 This library is within the namespace *statistics*.
 
-# Welford
+# Running
 This class implements Welford's method for streaming estimation of mean, variance, and standard deviation. The class is templated to support floating point types.
 
 ## Methods
 
-**Welford()** Creates a Welford object and initializes the estimator states.
+**Running()** Creates a *Running* object and initializes the estimator states.
 
 ```C++
-statistics::Welford<float> w;
+statistics::Running<float> stats;
 ```
 
-**void Welford::Accum(T x)** Accumulates data into the estimator.
+**void Running::Update(T x)** Accumulates data into the estimator.
 
 ```C++
 for (unsigned int i = 0; i < 10; i++) {
-  w.Accum((float) i);
+  stats.Update((float) i);
 }
 ```
 
-**T Welford::mean()** Returns the current estimate of the mean of the accumulated data.
+**T Running::mean()** Returns the current estimate of the mean of the accumulated data.
 
 ```C++
-std::cout << w.mean() << std::endl; // 4.5
+std::cout << stats.mean() << std::endl; // 4.5
 ```
 
-**T Welford::var()** Returns the current estimate of the variance of the accumulated data.
+**T Running::var()** Returns the current estimate of the variance of the accumulated data.
 
 ```C++
-std::cout << w.var() << std::endl; // 9.1667
+std::cout << stats.var() << std::endl; // 9.1667
 ```
 
-**T Welford::std()** Returns the current estimate of the standard deviation of the accumulated data.
+**T Running::std()** Returns the current estimate of the standard deviation of the accumulated data.
 
 ```C++
-std::cout << w.std() << std::endl; // 3.0277
+std::cout << stats.std() << std::endl; // 3.0277
 ```
 
-**void Welford::Clear()** Resets the estimator states.
+**void Running::Clear()** Resets the estimator states.
 
 ```C++
-w.Clear();
+stats.Clear();
+```
+
+# MovingWindow
+This class implements a modification of Welford's method for a moving window estimation of mean, variance, and standard deviation. The class is templated to support floating point types and window sizes. Estimates are always performed looking back from the current value.
+
+## Methods
+
+**MovingWindow()** Creates a *MovingWindow* object and initializes the estimator states.
+
+```C++
+/* A moving window estimator operating on floats with a window size of 250 values */
+statistics::MovingWindow<float, 250> stats;
+```
+
+**void MovingWindow::Update(T x)** Accumulates data into the estimator, slides the window after the window is filled.
+
+```C++
+stats.Update(val);
+```
+
+**T MovingWindow::mean()** Returns the current estimate of the mean of the windowed data.
+
+```C++
+std::cout << stats.mean() << std::endl;
+```
+
+**T MovingWindow::var()** Returns the current estimate of the variance of the windowed data.
+
+```C++
+std::cout << stats.var() << std::endl;
+```
+
+**T MovingWindow::std()** Returns the current estimate of the standard deviation of the windowed data.
+
+```C++
+std::cout << stats.std() << std::endl;
+```
+
+**void MovingWindow::Clear()** Resets the estimator states.
+
+```C++
+stats.Clear();
 ```
