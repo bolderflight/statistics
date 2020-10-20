@@ -1,26 +1,39 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Statistics
-  VERSION 1.0.2
+  VERSION 2.0.0
   DESCRIPTION "Statistics algorithms and classes."
   LANGUAGES CXX
 )
+include(FetchContent)
+# Fetch circular buffer
+FetchContent_Declare(
+	circle_buf
+	GIT_REPOSITORY 	git@gitlab.com:bolderflight/software/circle_buf.git
+	GIT_TAG v1.2.0
+)
+FetchContent_MakeAvailable(circle_buf)
 # Add the library target
 add_library(statistics INTERFACE)
+# Link circular buffer
+target_link_libraries(statistics
+	INTERFACE
+		circle_buf
+)
 # Setup include directories 
 target_include_directories(statistics INTERFACE include/)
 
 # Example and unit testing if this project is built separately
 if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	# Add the example target
-	add_executable(welford_example examples/welford_example.cc)
+	add_executable(stats_example examples/stats_example.cc)
 	# Add the includes
-	target_include_directories(welford_example PUBLIC 
+	target_include_directories(stats_example PUBLIC 
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 		$<INSTALL_INTERFACE:include>
 	)
 	# Link libraries to the example target
-	target_link_libraries(welford_example
+	target_link_libraries(stats_example
 		PRIVATE 
 			statistics
 	)
@@ -35,14 +48,14 @@ if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	enable_testing()
 	include(GoogleTest)
 	# Add the test target
-	add_executable(welford_test tests/welford_test.cc)
+	add_executable(stats_test tests/stats_test.cc)
 	# Add the includes
-	target_include_directories(welford_test PUBLIC 
+	target_include_directories(stats_test PUBLIC 
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 		$<INSTALL_INTERFACE:include>
 	)
 	# Link libraries to the test target
-	target_link_libraries(welford_test
+	target_link_libraries(stats_test
 		PRIVATE 
 			statistics
 			gtest_main 
@@ -50,5 +63,5 @@ if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 			gmock
 	)
 	# Discover unit tests
-	gtest_discover_tests(welford_test)
+	gtest_discover_tests(stats_test)
 endif()
