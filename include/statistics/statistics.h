@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2020 Bolder Flight Systems
+* Copyright (c) 2021 Bolder Flight Systems
 */
 
 #ifndef INCLUDE_STATISTICS_STATISTICS_H_
@@ -25,7 +25,8 @@ namespace statistics {
 template<typename T>
 class Running {
  public:
-  static_assert(std::is_floating_point<T>::value, "Only floating point types supported");
+  static_assert(std::is_floating_point<T>::value,
+                "Only floating point types supported");
   Running() : n_(0) {}
   void Update(T x) {
     delta_ = x - m_;
@@ -66,7 +67,8 @@ class Running {
 template<typename T, std::size_t N>
 class MovingWindow {
  public:
-  static_assert(std::is_floating_point<T>::value, "Only floating point types supported");
+  static_assert(std::is_floating_point<T>::value,
+                "Only floating point types supported");
   MovingWindow() : n_(0) {}
   void Update(T x) {
     if (n_ < N) {
