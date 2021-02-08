@@ -11,8 +11,6 @@ CMake is used to build this library, which is exported as a library target calle
 #include "statistics/statistics.h"
 ```
 
-Note that you'll need CMake version 3.13 or above; it is recommended to build and install CMake from source, directions are located in the [CMake GitLab repository](https://github.com/Kitware/CMake).
-
 The library can be also be compiled stand-alone using the CMake idiom of creating a *build* directory and then, from within that directory issuing:
 
 ```
@@ -20,7 +18,7 @@ cmake ..
 make
 ```
 
-This will build the library, an example executable called *stats_example*, and an executable for testing using the Google Test framework, called *stats_test*. The example executable source file is located at *examples/stats_example.cc*. This code is built and tested on AARCH64 and AMD64 systems running Linux and AMD64 systems running the Windows Subsystem for Linux (WSL).
+This will build the library, an example executable called *stats_example*, and an executable for testing using the Google Test framework, called *stats_test*. The example executable source file is located at *examples/stats_example.cc*.
 
 ## Namespace
 This library is within the namespace *statistics*.
