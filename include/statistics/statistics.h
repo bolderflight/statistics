@@ -2,7 +2,25 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2021 Bolder Flight Systems
+* Copyright (c) 2021 Bolder Flight Systems Inc
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the “Software”), to
+* deal in the Software without restriction, including without limitation the
+* rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+* sell copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+* IN THE SOFTWARE.
 */
 
 #ifndef INCLUDE_STATISTICS_STATISTICS_H_
@@ -12,7 +30,7 @@
 #include <type_traits>
 #include "circle_buf/circle_buf.h"
 
-namespace statistics {
+namespace bfs {
 
 /*
 * Implements Welford's algorithm for streaming estimation of mean,
@@ -23,24 +41,24 @@ namespace statistics {
 * class states.
 */
 template<typename T>
-class Running {
+class RunningStats {
  public:
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
-  Running() : n_(0) {}
-  void Update(T x) {
+  RunningStats() : n_(0) {}
+  void Update(const T x) {
     delta_ = x - m_;
     n_++;
     m_ += delta_ / static_cast<T>(n_);
     m2_ += delta_ * (x - m_);
   }
-  T mean() {
+  inline T mean() const {
     return (n_ > 0) ? m_ : static_cast<T>(0);
   }
-  T var() {
+  inline T var() const {
     return (n_ > 1) ? m2_ / static_cast<T>((n_ - 1)) : static_cast<T>(0);
   }
-  T std() {
+  inline T std() const {
     return std::sqrt(var());
   }
   void Clear() {
@@ -65,12 +83,12 @@ class Running {
 * class states.
 */
 template<typename T, std::size_t N>
-class MovingWindow {
+class MovingWindowStats {
  public:
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
-  MovingWindow() : n_(0) {}
-  void Update(T x) {
+  MovingWindowStats() : n_(0) {}
+  void Update(const T x) {
     if (n_ < N) {
       Accum(x);
     } else {
@@ -78,13 +96,13 @@ class MovingWindow {
     }
     buffer_.Write(x);
   }
-  T mean() {
+  inline T mean() const {
     return (n_ > 0) ? m_ : static_cast<T>(0);
   }
-  T var() {
+  inline T var() const {
     return (n_ > 1) ? m2_ / static_cast<T>((n_ - 1)) : static_cast<T>(0);
   }
-  T std() {
+  inline T std() const {
     return std::sqrt(var());
   }
   void Clear() {
@@ -100,13 +118,13 @@ class MovingWindow {
   T m2_ = 0;
   T delta_, x_old_, prev_m_;
   CircularBuffer<T, N> buffer_;
-  void Accum(T x) {
+  void Accum(const T x) {
     delta_ = x - m_;
     n_++;
     m_ += delta_ / static_cast<T>(n_);
     m2_ += delta_ * (x - m_);
   }
-  void Slide(T x) {
+  void Slide(const T x) {
     x_old_ = buffer_.Read();
     prev_m_ = m_;
     m_ += (x - x_old_) / static_cast<T>(N);
@@ -114,6 +132,6 @@ class MovingWindow {
   }
 };
 
-}  // namespace statistics
+}  // namespace bfs
 
 #endif  // INCLUDE_STATISTICS_STATISTICS_H_

@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0.0
+- Updated namespace to *bfs*
+- Changed *Running* to *RunningStats* and *MovingWindow* to *MovingWindowStats*
+
 ## v2.0.1
 - Updated contributing
 - Updated circle_buf dependency to pull from our GitHub repo
