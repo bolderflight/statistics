@@ -2,7 +2,25 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2019 Bolder Flight Systems
+* Copyright (c) 2021 Bolder Flight Systems Inc
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the “Software”), to
+* deal in the Software without restriction, including without limitation the
+* rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+* sell copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+* IN THE SOFTWARE.
 */
 
 #include "statistics/statistics.h"
@@ -10,14 +28,14 @@
 
 /* Test the default constructor */
 TEST(Running, DefaultConstructor) {
-  statistics::Running<float> stats;
+  bfs::RunningStats<float> stats;
   EXPECT_EQ(0, stats.mean());
   EXPECT_EQ(0, stats.var());
   EXPECT_EQ(0, stats.std());
 }
 /* Accumlate 1 sample and test */
 TEST(Running, OneSample) {
-  statistics::Running<float> stats;
+  bfs::RunningStats<float> stats;
   stats.Update(1.0f);
   EXPECT_EQ(1, stats.mean());
   EXPECT_EQ(0, stats.var());
@@ -25,7 +43,7 @@ TEST(Running, OneSample) {
 }
 /* Accumlate a few samples and test */
 TEST(Running, ThreeSample) {
-  statistics::Running<float> stats;
+  bfs::RunningStats<float> stats;
   stats.Update(1);
   stats.Update(2);
   stats.Update(3);
@@ -35,7 +53,7 @@ TEST(Running, ThreeSample) {
 }
 /* Accumlate ten samples and test */
 TEST(Running, TenSample) {
-  statistics::Running<float> stats;
+  bfs::RunningStats<float> stats;
   for (unsigned int i = 0; i < 10; i++) {
     stats.Update(i);
   }
@@ -45,7 +63,7 @@ TEST(Running, TenSample) {
 }
 /* Test the clear method */
 TEST(Running, Clear) {
-  statistics::Running<float> stats;
+  bfs::RunningStats<float> stats;
   for (unsigned int i = 0; i < 10; i++) {
     stats.Update(i);
   }
@@ -59,7 +77,7 @@ TEST(Running, Clear) {
 }
 /* Test the default constructor */
 TEST(MovingWindow, DefaultConstructor) {
-  statistics::MovingWindow<float, 3> stats;
+  bfs::MovingWindowStats<float, 3> stats;
   EXPECT_EQ(0, stats.mean());
   EXPECT_EQ(0, stats.var());
   EXPECT_EQ(0, stats.std());
@@ -118,7 +136,7 @@ TEST(MovingWindow, Samples) {
     0.03444932636949312,
     0.01985937307326765
   };
-  statistics::MovingWindow<double, 3> stats;
+  bfs::MovingWindowStats<double, 3> stats;
   for (int i = 0; i < 10; i++) {
     stats.Update(A[i]);
     EXPECT_FLOAT_EQ(m[i], stats.mean());
@@ -180,7 +198,7 @@ TEST(MovingWindow, Clear) {
     0.03444932636949312,
     0.01985937307326765
   };
-  statistics::MovingWindow<double, 3> stats;
+  bfs::MovingWindowStats<double, 3> stats;
   for (int i = 0; i < 10; i++) {
     stats.Update(A[i]);
     EXPECT_FLOAT_EQ(m[i], stats.mean());
