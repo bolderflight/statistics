@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Statistics
-  VERSION 3.0.0
+  VERSION 3.0.1
   DESCRIPTION "Statistics algorithms and classes."
   LANGUAGES CXX
 )
@@ -9,7 +9,7 @@ include(FetchContent)
 # Fetch circular buffer
 FetchContent_Declare(
 	circle_buf
-	GIT_REPOSITORY 	https://github.com/bolderflight/circle_buf.git
+	GIT_REPOSITORY https://github.com/bolderflight/circle_buf.git
 	GIT_TAG v2.0.0
 )
 FetchContent_MakeAvailable(circle_buf)

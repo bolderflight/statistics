@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.0.1
+- Updated counter from *int* to *std::size_t*
+
 ## v3.0.0
 - Updated namespace to *bfs*
 - Changed *Running* to *RunningStats* and *MovingWindow* to *MovingWindowStats*

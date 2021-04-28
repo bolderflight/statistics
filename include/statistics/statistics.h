@@ -68,7 +68,7 @@ class RunningStats {
   }
 
  private:
-  int n_;
+  std::size_t n_;
   T m_ = 0;
   T m2_ = 0;
   T delta_;
@@ -113,7 +113,7 @@ class MovingWindowStats {
   }
 
  private:
-  int n_;
+  std::size_t n_;
   T m_ = 0;
   T m2_ = 0;
   T delta_, x_old_, prev_m_;
