@@ -8,7 +8,7 @@ Lint:
   tags:
     - bfs
   script: 
-    - cpplint --verbose=0 include/statistics/statistics.h
+    - cpplint --verbose=0 src/statistics.h
 
 Compile:
   stage: build

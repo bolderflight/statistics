@@ -1,14 +1,29 @@
+[![Pipeline](https://gitlab.com/bolderflight/software/statistics/badges/main/pipeline.svg)](https://gitlab.com/bolderflight/software/statistics/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
+
 # Statistics
-This library contains statistics functions and classes.
+This library contains statistics functions and classes including streaming and moving window estimates of mean, variance, and standard deviation. This library is compatible with Arduino and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
    * [License](LICENSE.md)
    * [Changelog](CHANGELOG.md)
    * [Contributing guide](CONTRIBUTING.md)
 
-## Installation
+# Installation
+
+## Arduino
+Use the Arduino Library Manager to install this library or clone to your Arduino/libraries folder. The library is added as:
+
+```C++
+#include "statistics.h"
+```
+
+An example Arduino executable is located at *examples/arduino/stats_example/stats_example.ino*.
+
+## CMake
 CMake is used to build this library, which is exported as a library target called *statistics*. The header is added as:
 
-```
-#include "statistics/statistics.h"
+```C++
+#include "statistics.h"
 ```
 
 The library can be also be compiled stand-alone using the CMake idiom of creating a *build* directory and then, from within that directory issuing:
@@ -18,7 +33,7 @@ cmake ..
 make
 ```
 
-This will build the library, an example executable called *stats_example*, and an executable for testing using the Google Test framework, called *stats_test*. The example executable source file is located at *examples/stats_example.cc*.
+This will build the library, an example executable called *stats_example*, and an executable for testing using the Google Test framework, called *stats_test*. The example executable source file is located at *examples/cmake/stats_example.cc*.
 
 ## Namespace
 This library is within the namespace *bfs*.
@@ -28,7 +43,7 @@ This class implements Welford's method for streaming estimation of mean, varianc
 
 ## Methods
 
-**RunningStats()** Creates a *RunningStats* object and initializes the estimator states.
+**RunningStats<typename T>** Creates a *RunningStats* object operating on type *T* and initializes the estimator states.
 
 ```C++
 bfs::RunningStats<float> stats;
@@ -71,7 +86,7 @@ This class implements a modification of Welford's method for a moving window est
 
 ## Methods
 
-**MovingWindowStats()** Creates a *MovingWindowStats* object and initializes the estimator states.
+**MovingWindowStats<typename T, size_t N>** Creates a *MovingWindowStats* object operating on type *T* with window length *N* and initializes the estimator states.
 
 ```C++
 /* A moving window estimator operating on floats with a window size of 250 values */
