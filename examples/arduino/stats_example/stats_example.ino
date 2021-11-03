@@ -23,25 +23,32 @@
 * IN THE SOFTWARE.
 */
 
-#include "statistics/statistics.h"
-#include <iostream>
+#include "statistics.h"
 
-int main()
-{
+void setup() {
+  Serial.begin(115200);
+  while (!Serial) {}
+
   bfs::RunningStats<float> w;
   for (unsigned int i = 0; i < 10; i++) {
     w.Update((float) i);
   }
-  std::cout << "Mean: " << w.mean() << std::endl; // 4.5
-  std::cout << "Variance: " << w.var() << std::endl; // 9.1667
-  std::cout << "Standard Deviation: " << w.std() << std::endl; // 3.0277
+  Serial.print("Mean: ");
+  Serial.println(w.mean()); // 4.5
+  Serial.print("Variance: ");
+  Serial.println(w.var()); // 9.1667
+  Serial.print("Standard Deviation: ");
+  Serial.println(w.std()); // 3.0277
 
   bfs::MovingWindowStats<float, 3> m;
   for (unsigned int i = 0; i < 10; i++) {
     m.Update((float) i);
-    std::cout << m.mean() << "\t";
-    std::cout << m.var() << "\t";
-    std::cout << m.std() << std::endl;
+    Serial.print(m.mean());
+    Serial.print("\t");
+    Serial.print(m.var());
+    Serial.print("\t");
+    Serial.println(m.std());
   }
-  return 0;
 }
+
+void loop() {}

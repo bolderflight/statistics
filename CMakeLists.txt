@@ -1,16 +1,18 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Statistics
-  VERSION 3.0.1
+  VERSION 4.0.0
   DESCRIPTION "Statistics algorithms and classes."
   LANGUAGES CXX
 )
+# Add definition that we're building with CMake
+add_definitions(-D__CMAKE__)
 include(FetchContent)
 # Fetch circular buffer
 FetchContent_Declare(
 	circle_buf
 	GIT_REPOSITORY https://github.com/bolderflight/circle_buf.git
-	GIT_TAG v2.0.0
+	GIT_TAG v3.0.1
 )
 FetchContent_MakeAvailable(circle_buf)
 # Add the library target
@@ -21,12 +23,12 @@ target_link_libraries(statistics
 		circle_buf
 )
 # Setup include directories 
-target_include_directories(statistics INTERFACE include/)
+target_include_directories(statistics INTERFACE src/)
 
 # Example and unit testing if this project is built separately
 if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	# Add the example target
-	add_executable(stats_example examples/stats_example.cc)
+	add_executable(stats_example examples/cmake/stats_example.cc)
 	# Add the includes
 	target_include_directories(stats_example PUBLIC 
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
