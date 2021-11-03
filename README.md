@@ -11,7 +11,7 @@ This library contains statistics functions and classes including streaming and m
 # Installation
 
 ## Arduino
-Use the Arduino Library Manager to install this library or clone to your Arduino/libraries folder. The library is added as:
+Use the Arduino Library Manager to install this library or clone to your Arduino/libraries folder. Additionally, the [Bolder Flight Systems Circular Buffer library must be installed](https://github.com/bolderflight/circle_buf). This library is added as:
 
 ```C++
 #include "statistics.h"
