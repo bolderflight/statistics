@@ -1,18 +1,16 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(Statistics
-  VERSION 4.0.0
+  VERSION 4.0.1
   DESCRIPTION "Statistics algorithms and classes."
   LANGUAGES CXX
 )
-# Add definition that we're building with CMake
-add_definitions(-D__CMAKE__)
 include(FetchContent)
 # Fetch circular buffer
 FetchContent_Declare(
 	circle_buf
 	GIT_REPOSITORY https://github.com/bolderflight/circle_buf.git
-	GIT_TAG v3.0.1
+	GIT_TAG v4.0.0
 )
 FetchContent_MakeAvailable(circle_buf)
 # Add the library target
