@@ -27,26 +27,13 @@
 #define SRC_STATISTICS_H_
 
 /* Arduino IDE built */
-#if defined(ARDUINO) && !defined(__CMAKE__)
-/* Arduino AVR board */
-#if defined(__AVR__)
+#if defined(ARDUINO)
 #include <Arduino.h>
-/* Arduino ARM board */
-#else
-#include <Arduino.h>
+#endif
+#include <cstddef>
+#include <cstdint>
 #include <cmath>
 #include <type_traits>
-#define __TYPE_TRAITS__
-#define __STD_SQRT__
-#endif
-/* Built by CMake or used in another build system */
-#else
-#include <stdint.h>
-#include <cmath>
-#include <type_traits>
-#define __TYPE_TRAITS__
-#define __STD_SQRT__
-#endif
 #include "circle_buf.h"  // NOLINT
 
 namespace bfs {
@@ -61,10 +48,8 @@ namespace bfs {
 template<typename T>
 class RunningStats {
  public:
-  #if defined(__TYPE_TRAITS__)
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
-  #endif
   RunningStats() : n_(0) {}
   void Update(const T x) {
     delta_ = x - m_;
@@ -79,11 +64,7 @@ class RunningStats {
     return (n_ > 1) ? m2_ / static_cast<T>((n_ - 1)) : static_cast<T>(0);
   }
   inline T std() const {
-    #if defined(__STD_SQRT__)
     return std::sqrt(var());
-    #else
-    return Sqrt_(var());
-    #endif
   }
   void Clear() {
     n_ = 0;
@@ -92,16 +73,10 @@ class RunningStats {
   }
 
  private:
-  size_t n_;
+  std::size_t n_;
   T m_ = 0;
   T m2_ = 0;
   T delta_;
-  /* Define our own std::sqrt, if not available */
-  #if !defined(__STD_SQRT__)
-  inline float Sqrt_(float val) const {return sqrtf(val);}
-  inline double Sqrt_(double val) const {return sqrt(val);}
-  inline long double Sqrt_(long double val) const {return sqrtl(val);}
-  #endif
 };
 
 /*
@@ -112,13 +87,11 @@ class RunningStats {
 * and standard deviation estimates. The Clear method resets the,
 * class states.
 */
-template<typename T, size_t N>
+template<typename T, std::size_t N>
 class MovingWindowStats {
  public:
-  #if defined(__TYPE_TRAITS__)
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
-  #endif
   MovingWindowStats() : n_(0) {}
   void Update(const T x) {
     if (n_ < N) {
@@ -135,11 +108,7 @@ class MovingWindowStats {
     return (n_ > 1) ? m2_ / static_cast<T>((n_ - 1)) : static_cast<T>(0);
   }
   inline T std() const {
-    #if defined(__STD_SQRT__)
     return std::sqrt(var());
-    #else
-    return Sqrt_(var());
-    #endif
   }
   void Clear() {
     n_ = 0;
@@ -149,11 +118,11 @@ class MovingWindowStats {
   }
 
  private:
-  size_t n_;
+  std::size_t n_;
   T m_ = 0;
   T m2_ = 0;
   T delta_, x_old_, prev_m_;
-  CircularBuffer<T, N> buffer_;
+  CircleBuf<T, N> buffer_;
   void Accum(const T x) {
     delta_ = x - m_;
     n_++;
@@ -166,12 +135,6 @@ class MovingWindowStats {
     m_ += (x - x_old_) / static_cast<T>(N);
     m2_ += ((x_old_ - prev_m_) + (x - m_)) * (x - x_old_);
   }
-  /* Define our own std::sqrt, if not available */
-  #if !defined(__STD_SQRT__)
-  inline float Sqrt_(float val) const {return sqrtf(val);}
-  inline double Sqrt_(double val) const {return sqrt(val);}
-  inline long double Sqrt_(long double val) const {return sqrtl(val);}
-  #endif
 };
 
 }  // namespace bfs

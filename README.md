@@ -3,7 +3,7 @@
 ![Bolder Flight Systems Logo](img/logo-words_75.png) &nbsp; &nbsp; ![Arduino Logo](img/arduino_logo_75.png)
 
 # Statistics
-This library contains statistics functions and classes including streaming and moving window estimates of mean, variance, and standard deviation. This library is compatible with Arduino and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
+This library contains statistics functions and classes including streaming and moving window estimates of mean, variance, and standard deviation. This library is compatible with Arduino ARM and with CMake build systems. It would also be easy to include with other projects, since it is a header only library consisting of a single file.
    * [License](LICENSE.md)
    * [Changelog](CHANGELOG.md)
    * [Contributing guide](CONTRIBUTING.md)
@@ -11,13 +11,13 @@ This library contains statistics functions and classes including streaming and m
 # Installation
 
 ## Arduino
-Use the Arduino Library Manager to install this library or clone to your Arduino/libraries folder. Additionally, the [Bolder Flight Systems Circular Buffer library must be installed](https://github.com/bolderflight/circle_buf). This library is added as:
+Use the Arduino Library Manager to install this library or clone to your Arduino/libraries folder. Additionally, the [Bolder Flight Systems Circular Buffer library](https://github.com/bolderflight/circle_buf) must be installed. This library is added as:
 
 ```C++
 #include "statistics.h"
 ```
 
-An example Arduino executable is located at *examples/arduino/stats_example/stats_example.ino*.
+An example Arduino executable is located at *examples/arduino/stats_example/stats_example.ino*. Teensy 3.x, 4.x, and LC devices are used for testing under Arduino and this library should be compatible with other ARM devices. This library is *not* expected to work on AVR devices.
 
 ## CMake
 CMake is used to build this library, which is exported as a library target called *statistics*. The header is added as:
@@ -86,7 +86,7 @@ This class implements a modification of Welford's method for a moving window est
 
 ## Methods
 
-**MovingWindowStats<typename T, size_t N>** Creates a *MovingWindowStats* object operating on type *T* with window length *N* and initializes the estimator states.
+**MovingWindowStats<typename T, std::size_t N>** Creates a *MovingWindowStats* object operating on type *T* with window length *N* and initializes the estimator states.
 
 ```C++
 /* A moving window estimator operating on floats with a window size of 250 values */
