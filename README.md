@@ -35,7 +35,7 @@ make
 
 This will build the library, an example executable called *stats_example*, and an executable for testing using the Google Test framework, called *stats_test*. The example executable source file is located at *examples/cmake/stats_example.cc*.
 
-## Namespace
+# Namespace
 This library is within the namespace *bfs*.
 
 # RunningStats
