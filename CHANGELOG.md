@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.0.3
+- Updated minimum CMake version to 3.14 to support FetchContent_MakeAvailable
+- Updated CircleBuf to v4.0.2
+
 ## v4.0.2
 - Updated to CircleBuf v4.0.1
 
