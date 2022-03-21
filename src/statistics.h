@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2021 Bolder Flight Systems Inc
+* Copyright (c) 2022 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -23,8 +23,8 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef SRC_STATISTICS_H_
-#define SRC_STATISTICS_H_
+#ifndef STATISTICS_SRC_STATISTICS_H_  // NOLINT
+#define STATISTICS_SRC_STATISTICS_H_
 
 /* Arduino IDE built */
 #if defined(ARDUINO)
@@ -139,4 +139,4 @@ class MovingWindowStats {
 
 }  // namespace bfs
 
-#endif  // SRC_STATISTICS_H_
+#endif  // STATISTICS_SRC_STATISTICS_H_ NOLINT
