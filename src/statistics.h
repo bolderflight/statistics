@@ -23,7 +23,7 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef STATISTICS_SRC_STATISTICS_H_
+#ifndef STATISTICS_SRC_STATISTICS_H_  // NOLINT
 #define STATISTICS_SRC_STATISTICS_H_
 
 /* Arduino IDE built */
@@ -139,4 +139,4 @@ class MovingWindowStats {
 
 }  // namespace bfs
 
-#endif  // SRC_STATISTICS_H_
+#endif  // STATISTICS_SRC_STATISTICS_H_ NOLINT
