@@ -4,7 +4,9 @@
 	"name": "C++",
 	"build": {
 		"dockerfile": "Dockerfile"
-	}
+	},
+  "remoteUser": "codespace",
+  "containerUser": "codespace"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
