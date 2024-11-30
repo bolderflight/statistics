@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
 #-------------------------------------------------------------------------------------------------------------
 
-FROM ubuntu:latest
+FROM ubuntu:focal
 
 COPY first-run-notice.txt /tmp/scripts/
 
@@ -61,8 +61,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get upgrade -y \
     && add-apt-repository universe \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip install cpplint
+    && rm -rf /var/lib/apt/lists/*
 
 # Verify expected build and debug tools are present
 RUN apt-get update \
