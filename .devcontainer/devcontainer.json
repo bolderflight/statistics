@@ -13,9 +13,9 @@
         "ms-vscode.cmake-tools"
       ]
     }
-  }
+  },
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": ".devcontainer/post-create.sh",
   // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  // "remoteUser": "vscode"
+  "remoteUser": "vscode"
 }
